@@ -1,6 +1,8 @@
 package com.seancalkins.patient_feedback.di
 
-import com.seancalkins.patient_feedback.data.remote.Api
+import com.seancalkins.patient_feedback.data.remote.TodoItemApi
+import com.seancalkins.patient_feedback.data.repository.TodoItemRepositoryImpl
+import com.seancalkins.patient_feedback.domain.repository.TodoItemRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,12 +17,19 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideApi(): Api {
+    fun provideApi(): TodoItemApi {
         return Retrofit.Builder()
             .baseUrl("https://calkinssean.github.io/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(Api::class.java)
+            .create(TodoItemApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideRepository(api: TodoItemApi): TodoItemRepository {
+        return TodoItemRepositoryImpl(api)
+    }
+
 
 }
