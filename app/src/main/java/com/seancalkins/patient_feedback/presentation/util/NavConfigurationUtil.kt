@@ -5,6 +5,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -44,7 +45,6 @@ fun NavConfigurationUtil(
                 }
                 val viewModel = hiltViewModel<FeedbackViewModel>(parentEntry)
                 viewModel.addTodoItem(todoItem)
-                Log.d("TestingViewModel", viewModel.todoItem?.id ?: "DIDN'T WORK")
                 FeedbackScreen(viewModel) {
                     navController.navigate(Screen.Diagnosis.route)
                 }

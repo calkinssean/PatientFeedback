@@ -26,7 +26,6 @@ fun Bundle.toTodoItem(): TodoItem? {
             diagnosis
         )
     } else {
-        Log.e(Bundle::class.java.name, "Error creating todo item")
         null
     }
 }
@@ -48,5 +47,5 @@ fun Bundle.diagnosisDto(): DiagnosisDto? {
 }
 
 fun Bundle.entries(): List<Resource> {
-    return entry.mapNotNull { it.resource }
+    return entry.map { it.resource }
 }

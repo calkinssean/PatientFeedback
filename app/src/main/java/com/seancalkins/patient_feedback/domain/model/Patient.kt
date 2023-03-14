@@ -1,10 +1,11 @@
 package com.seancalkins.patient_feedback.domain.model
 
-import com.seancalkins.patient_feedback.data.dto.Address
-import com.seancalkins.patient_feedback.data.dto.ContactMethod
-import com.seancalkins.patient_feedback.data.dto.Name
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+
+@Parcelize
 data class Patient(
     val givenName: String,
     val familyName: String
-)
+): Parcelable

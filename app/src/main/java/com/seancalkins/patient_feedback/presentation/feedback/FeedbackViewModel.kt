@@ -1,6 +1,8 @@
 package com.seancalkins.patient_feedback.presentation.feedback
 
+import android.util.Log
 import androidx.compose.runtime.*
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seancalkins.patient_feedback.common.Resource
@@ -23,7 +25,7 @@ class FeedbackViewModel @Inject constructor(
     private val _state = mutableStateOf(SubmitFeedbackState())
     val state: State<SubmitFeedbackState> = _state
 
-    private var feedback: Feedback = Feedback()
+    private var feedback = Feedback()
 
     var todoItem by mutableStateOf<TodoItem?>(null)
         private set

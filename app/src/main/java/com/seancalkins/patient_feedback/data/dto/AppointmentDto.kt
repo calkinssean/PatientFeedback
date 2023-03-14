@@ -12,12 +12,7 @@ data class AppointmentDto(
     val period: Period
 )
 
-fun AppointmentDto.toAppointment(): Appointment? {
-    val appointmentType = type?.first()?.text
-    return if (appointmentType != null) {
-        Appointment(appointmentType)
-    } else {
-        Log.e(AppointmentDto::class.java.name, "Error creating appointment")
-        null
-    }
+fun AppointmentDto.toAppointment(): Appointment {
+    val appointmentType = type.first().text
+    return Appointment(appointmentType)
 }
