@@ -5,6 +5,7 @@ import com.seancalkins.patient_feedback.data.dto.FeedbackSubmissionResponse
 import com.seancalkins.patient_feedback.data.dto.toTodoItem
 import com.seancalkins.patient_feedback.domain.model.TodoItem
 import com.seancalkins.patient_feedback.domain.repository.TodoItemRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -17,6 +18,7 @@ class SubmitFeedbackUseCase @Inject constructor(
     operator fun invoke(): Flow<Resource<Boolean>> = flow {
         try {
             emit(Resource.Loading<Boolean>())
+            delay(500L)
             val response = repository.submitFeedback()
             emit(Resource.Success<Boolean>(true))
         } catch (e: HttpException) {

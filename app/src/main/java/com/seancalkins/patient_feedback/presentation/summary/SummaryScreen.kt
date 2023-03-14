@@ -1,8 +1,7 @@
 package com.seancalkins.patient_feedback.presentation.summary
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -22,20 +21,18 @@ fun SummaryScreen(
     onSubmitSuccess: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
-    val submitting = remember { viewModel.submittingFeedback }
     val context = LocalContext.current
+    val state = viewModel.state.value
 
     Scaffold(
         topBar = {
             CustomToolbar(title = "Summary")
         },
         content = {
-            Column(
-                modifier = Modifier.padding(16.dp)
-            ) {
-                if (submitting.value) {
-                    CircularProgressIndicator()
-                } else {
+            Box(modifier = Modifier.fillMaxSize()) {
+                Column(
+                    modifier = Modifier.padding(16.dp)
+                ) {
                     Text(
                         text = "Thanks again! Here's what we heard:",
                         style = MaterialTheme.typography.body1
@@ -61,15 +58,21 @@ fun SummaryScreen(
                             .topPadding(20.dp),
                         text = "Submit",
                         onTapped = {
-                            scope.launch {
-                                if (viewModel.submitFeedback()) {
-                                    onSubmitSuccess()
-                                } else {
-                                    Toast.makeText(context, "Something went wrong, please try again", Toast.LENGTH_SHORT).show()
-                                }
+                            viewModel.submitFeedback {
+                                onSubmitSuccess()
                             }
                         }
                     )
+                }
+                if (state.error.isNotBlank()) {
+                    Toast.makeText(
+                        context,
+                        "Something went wrong, please try again",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                if (state.isLoading) {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 }
             }
         }

@@ -10,7 +10,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.seancalkins.patient_feedback.common.extensions.buttonSize
 
-@Preview
 @Composable
 fun RoundedButton(
     modifier: Modifier = Modifier,

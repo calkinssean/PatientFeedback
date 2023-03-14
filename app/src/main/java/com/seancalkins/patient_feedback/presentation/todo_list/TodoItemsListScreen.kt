@@ -24,6 +24,9 @@ fun TodoItemsScreen(
     onStartTodoItem: (TodoItem) -> Unit
 ) {
     val state = viewModel.state.value
+    LaunchedEffect(Unit) {
+        viewModel.getTodoItems()
+    }
     Scaffold(
         topBar =  {
             CustomToolbar("Todo")

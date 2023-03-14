@@ -21,9 +21,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-@Composable
-fun DefaultPreview() {
-    PatientFeedbackTheme {
-    }
-}

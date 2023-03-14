@@ -1,5 +1,6 @@
 package com.seancalkins.patient_feedback.presentation.todo_list
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -18,11 +19,7 @@ class TodoListViewModel @Inject constructor(
     private val _state = mutableStateOf(TodoItemListState())
     val state: State<TodoItemListState> = _state
 
-    init {
-        getTodoItems()
-    }
-
-    private fun getTodoItems() {
+    fun getTodoItems() {
         getTodoItemsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
