@@ -80,7 +80,7 @@ dependencies {
     // KotlinX Serialization
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
 
-    // Local Init Tests
+    // Local Unit Tests
     testImplementation 'androidx.test.core:1.4.0'
     testImplementation 'junit:junit4:4.13.2'
     testImplementation 'androidx.arch.core:core-testing:2.2.0'
