@@ -9,7 +9,6 @@ import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.seancalkins.patient_feedback.data.dto.Bundle
 import com.seancalkins.patient_feedback.domain.model.TodoItem
 import com.seancalkins.patient_feedback.presentation.Screen
 import com.seancalkins.patient_feedback.presentation.feedback.FeedbackViewModel
@@ -18,6 +17,7 @@ import com.seancalkins.patient_feedback.presentation.diagnosis_resources.Diagnos
 import com.seancalkins.patient_feedback.presentation.diagnosis.DiagnosisScreen
 import com.seancalkins.patient_feedback.presentation.feedback.FeedbackScreen
 import com.seancalkins.patient_feedback.presentation.summary.SummaryScreen
+import com.seancalkins.patient_feedback.presentation.location.EnableLocationScreen
 import com.seancalkins.patient_feedback.presentation.todo_list.TodoItemsScreen
 
 @Composable
@@ -83,6 +83,15 @@ fun NavConfigurationUtil(
                 }
                 val viewModel = hiltViewModel<FeedbackViewModel>(parentEntry)
                 DiagnosisFeedbackScreen(viewModel) {
+                    navController.navigate(Screen.TakePhoto.route)
+                }
+            }
+            composable(Screen.TakePhoto.route) { backStackEntry ->
+                val parentEntry = remember(backStackEntry) {
+                    navController.getBackStackEntry("submit_feedback_graph")
+                }
+                val viewModel = hiltViewModel<FeedbackViewModel>(parentEntry)
+                EnableLocationScreen(viewModel) {
                     navController.navigate(Screen.Summary.route)
                 }
             }

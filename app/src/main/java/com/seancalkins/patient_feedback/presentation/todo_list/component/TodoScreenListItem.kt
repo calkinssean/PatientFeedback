@@ -2,6 +2,7 @@ package com.seancalkins.patient_feedback.presentation.todo_list.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Divider
@@ -24,10 +25,23 @@ fun TodoScreenListItem(
             .fillMaxWidth()
             .clickable {
                 item.onItemClick()
-            },
-        contentAlignment = Alignment.Center
+            }
     ) {
-        Text(text = "Post Appointment Feedback", style = MaterialTheme.typography.body1)
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.Start
+        ) {
+            Text(
+                text = "Post Appointment Feedback",
+                style = MaterialTheme.typography.body1,
+                modifier = Modifier.padding(4.dp)
+            )
+            Text(
+                text = "Please give us some feedback from your ${item.appointment.type}",
+                style = MaterialTheme.typography.body2,
+                modifier = Modifier.padding(4.dp)
+            )
+        }
     }
     Divider()
 }

@@ -64,6 +64,8 @@ dependencies {
 
     //Dagger - Hilt
     implementation "com.google.dagger:hilt-android:2.40.5"
+    implementation 'com.google.android.gms:play-services-home:+'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
     kapt "com.google.dagger:hilt-android-compiler:2.40.5"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     kapt "androidx.hilt:hilt-compiler:1.0.0"
@@ -76,6 +78,17 @@ dependencies {
 
     // KotlinX Serialization
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
+
+    // CameraX
+    def camerax_version = "1.2.1"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    implementation "androidx.camera:camera-view:${camerax_version}"
+
+    // Icons
+    implementation "androidx.compose.material:material-icons-extended:${compose_version}"
 
     // Local Init Tests
     testImplementation 'androidx.test.core:1.4.0'

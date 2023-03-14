@@ -65,23 +65,22 @@ class FeedbackViewModel @Inject constructor(
     val patientGivenName: String?
         get() = todoItem?.patient?.givenName
 
-
-
     fun submitFeedback(
-        onSuccess: () -> Unit
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
     ) {
         submitFeedbackUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
+                    _state.value = SubmitFeedbackState(false)
                     onSuccess()
                 }
                 is Resource.Error -> {
-                    _state.value = SubmitFeedbackState(
-                        error = result.message ?: "An unexpected error occurred"
-                    )
+                    _state.value = SubmitFeedbackState(false)
+                    onError(result.message ?: "An unexpected error occurred")
                 }
                 is Resource.Loading -> {
-                    _state.value = SubmitFeedbackState(isLoading = true)
+                    _state.value = SubmitFeedbackState(true)
                 }
             }
         }.launchIn(viewModelScope)

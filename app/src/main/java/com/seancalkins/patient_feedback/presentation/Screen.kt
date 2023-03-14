@@ -6,5 +6,6 @@ sealed class Screen(val route: String) {
     object Diagnosis: Screen("diagnosis")
     object DiagnosisResources: Screen("diagnosis_resources")
     object DiagnosisFeedback: Screen("diagnosis_feedback")
+    object TakePhoto: Screen("take_photo")
     object Summary: Screen("summary")
 }

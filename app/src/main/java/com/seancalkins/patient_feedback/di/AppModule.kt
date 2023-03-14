@@ -1,7 +1,10 @@
 package com.seancalkins.patient_feedback.di
 
+import com.seancalkins.patient_feedback.data.remote.ImageApi
 import com.seancalkins.patient_feedback.data.remote.TodoItemApi
+import com.seancalkins.patient_feedback.data.repository.ImageRepositoryImpl
 import com.seancalkins.patient_feedback.data.repository.TodoItemRepositoryImpl
+import com.seancalkins.patient_feedback.domain.repository.ImageRepository
 import com.seancalkins.patient_feedback.domain.repository.TodoItemRepository
 import dagger.Module
 import dagger.Provides
@@ -13,11 +16,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object ApiModule {
+object AppModule {
 
     @Provides
     @Singleton
-    fun provideApi(): TodoItemApi {
+    fun provideTodoItemApi(): TodoItemApi {
         return Retrofit.Builder()
             .baseUrl("https://calkinssean.github.io/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -27,9 +30,26 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideRepository(api: TodoItemApi): TodoItemRepository {
+    fun provideImageApi(): ImageApi {
+        return Retrofit.Builder()
+            .baseUrl("https://calkinssean.github.io/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ImageApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTodoItemRepository(api: TodoItemApi): TodoItemRepository {
         return TodoItemRepositoryImpl(api)
     }
+
+    @Provides
+    @Singleton
+    fun provideImageRepository(api: ImageApi): ImageRepository {
+        return ImageRepositoryImpl(api)
+    }
+
 
 
 }

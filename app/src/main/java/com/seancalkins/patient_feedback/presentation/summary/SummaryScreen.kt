@@ -58,18 +58,18 @@ fun SummaryScreen(
                             .topPadding(20.dp),
                         text = "Submit",
                         onTapped = {
-                            viewModel.submitFeedback {
-                                onSubmitSuccess()
-                            }
+                            viewModel.submitFeedback(
+                                onSuccess = onSubmitSuccess,
+                                onError = { errorMessage ->
+                                    Toast.makeText(
+                                        context,
+                                        errorMessage,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            )
                         }
                     )
-                }
-                if (state.error.isNotBlank()) {
-                    Toast.makeText(
-                        context,
-                        "Something went wrong, please try again",
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
                 if (state.isLoading) {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))

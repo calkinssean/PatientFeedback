@@ -1,7 +1,8 @@
-package com.seancalkins.patient_feedback.domain.use_case.submit_feedback
+package com.seancalkins.patient_feedback.domain.use_case.take_photo
 
+import android.media.Image
 import com.seancalkins.patient_feedback.common.Resource
-import com.seancalkins.patient_feedback.domain.repository.TodoItemRepository
+import com.seancalkins.patient_feedback.domain.repository.ImageRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -9,14 +10,15 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class SubmitFeedbackUseCase @Inject constructor(
-    private val repository: TodoItemRepository
+class UploadPhotoUseCase @Inject constructor(
+    private val repository: ImageRepository
 ) {
-    operator fun invoke(): Flow<Resource<Boolean>> = flow {
+
+    operator fun invoke(image: Image): Flow<Resource<Boolean>> = flow {
         try {
             emit(Resource.Loading<Boolean>())
             delay(500L)
-            val response = repository.submitFeedback()
+            val response = repository.uploadImage(image)
             emit(Resource.Success<Boolean>(true))
         } catch (e: HttpException) {
             emit(Resource.Error<Boolean>(e.localizedMessage ?: "An unexpected error occurred"))
@@ -24,4 +26,5 @@ class SubmitFeedbackUseCase @Inject constructor(
             emit(Resource.Error<Boolean>("Couldn't reach server. Check your internet connection."))
         }
     }
+
 }
