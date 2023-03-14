@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 data class Bundle(
     val resourceType: String?,
     val id: String?,
-    val timestamp: String? = null,
+    val timestamp: String,
     val entry: List<ResourceWrapper> = listOf()
 )
 

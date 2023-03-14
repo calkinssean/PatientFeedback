@@ -5,26 +5,20 @@ import com.google.gson.annotations.SerializedName
 import com.seancalkins.patient_feedback.domain.model.Patient
 
 data class PatientDto(
-    val id: String? = null,
-    val active: Boolean? = null,
-    @SerializedName("name")
-    val names: List<Name>? = null,
-    @SerializedName("contact")
-    val contactMethods: List<ContactMethod>? = null,
-    val gender: String? = null,
-    val birthDate: String? = null,
-    val addresses: List<Address>? = null
+    val id: String,
+    val active: Boolean,
+    val names: List<Name>,
+    val contactMethods: List<ContactMethod>,
+    val gender: String,
+    val birthDate: String,
+    val addresses: List<Address>
 )
 
-fun PatientDto.toPatient(): Patient? {
-    val givenName = names?.first()?.given?.first()
-    val familyName = names?.first()?.family
-    if (givenName != null && familyName != null) {
-        return Patient(
-            givenName = givenName,
-            familyName = familyName
-        )
-    }
-    Log.e(PatientDto::class.java.name, "Error creating patient")
-    return null
+fun PatientDto.toPatient(): Patient {
+    val givenName = names.first().given.first()
+    val familyName = names.first().family
+    return Patient(
+        givenName = givenName,
+        familyName = familyName
+    )
 }

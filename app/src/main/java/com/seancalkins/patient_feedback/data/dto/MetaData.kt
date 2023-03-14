@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MetaData(
-    val lastUpdated: String? = null
+    val lastUpdated: String
 )

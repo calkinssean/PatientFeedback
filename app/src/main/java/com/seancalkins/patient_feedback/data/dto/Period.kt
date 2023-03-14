@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Period(
-    val start: String? = null,
-    val end: String? = null
+    val start: String,
+    val end: String
 )

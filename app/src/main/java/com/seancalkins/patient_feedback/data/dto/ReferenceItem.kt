@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ReferenceItem(
-    val reference: String? = null
+    val reference: String
 )

@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CodingItem(
-    val system: String? = null,
-    val code: String? = null,
-    val name: String? = null
+    val system: String,
+    val code: String,
+    val name: String
 )

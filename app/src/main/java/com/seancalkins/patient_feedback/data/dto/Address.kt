@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Address(
-    val use: String? = null,
-    val line: List<String>? = null
+    val use: String,
+    val line: List<String>
 )

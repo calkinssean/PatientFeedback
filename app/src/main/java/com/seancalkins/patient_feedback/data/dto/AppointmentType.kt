@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AppointmentType(
-    val text: String? = null
+    val text: String
 )

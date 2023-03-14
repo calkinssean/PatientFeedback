@@ -4,12 +4,12 @@ import android.util.Log
 import com.seancalkins.patient_feedback.domain.model.Appointment
 
 data class AppointmentDto(
-    val id: String? = null,
-    val status: String? = null,
-    val type: List<AppointmentType>? = null,
-    val subject: ReferenceItem? = null,
-    val actor: ReferenceItem? = null,
-    val period: Period? = null
+    val id: String,
+    val status: String,
+    val type: List<AppointmentType>,
+    val subject: ReferenceItem,
+    val actor: ReferenceItem,
+    val period: Period
 )
 
 fun AppointmentDto.toAppointment(): Appointment? {

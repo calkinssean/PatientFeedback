@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Code(
-    val coding: List<CodingItem>? = null
+    val coding: List<CodingItem>
 )
