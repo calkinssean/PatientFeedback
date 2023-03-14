@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Name (
-    val text: String,
+    val text: String = "",
     val family: String,
     val given: List<String>,
 )

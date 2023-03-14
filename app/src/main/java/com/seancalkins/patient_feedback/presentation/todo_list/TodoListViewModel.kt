@@ -1,19 +1,18 @@
 package com.seancalkins.patient_feedback.presentation.todo_list
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seancalkins.patient_feedback.common.Resource
-import com.seancalkins.patient_feedback.domain.use_case.get_todo_item.GetTodoItemUseCase
+import com.seancalkins.patient_feedback.domain.use_case.get_todo_item.GetTodoItemsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
 class TodoListViewModel @Inject constructor(
-    private val getTodoItemsUseCase: GetTodoItemUseCase
+    private val getTodoItemsUseCase: GetTodoItemsUseCase
 ): ViewModel() {
 
     private val _state = mutableStateOf(TodoItemListState())

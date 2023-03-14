@@ -10,7 +10,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetTodoItemUseCase @Inject constructor(
+class GetTodoItemsUseCase @Inject constructor(
     private val repository: TodoItemRepository
 ) {
     operator fun invoke(): Flow<Resource<List<TodoItem>>> = flow {

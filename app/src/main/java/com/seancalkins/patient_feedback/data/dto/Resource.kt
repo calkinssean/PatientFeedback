@@ -9,22 +9,22 @@ data class ResourceWrapper(
 
 @Serializable
 data class Resource (
-    val resourceType: String,
-    val id: String,
-    val active: Boolean,
-    val name: List<Name>,
-    val contact: List<ContactMethod>,
-    val gender: String,
-    val birthDate: String,
-    val address: List<Address>,
-    val status: String,
-    val type: List<AppointmentType>,
-    val subject: ReferenceItem,
-    val actor: ReferenceItem,
-    val period: Period,
-    val meta: MetaData,
-    val code: Code,
-    val appointment: ReferenceItem
+    val resourceType: String = "",
+    val id: String = "",
+    val active: Boolean = false,
+    val name: List<Name> = listOf(),
+    val contact: List<ContactMethod> = listOf(),
+    val gender: String = "",
+    val birthDate: String = "",
+    val address: List<Address> = listOf(),
+    val status: String = "",
+    val type: List<AppointmentType> = listOf(),
+    val subject: ReferenceItem = ReferenceItem(reference = ""),
+    val actor: ReferenceItem = ReferenceItem(reference = ""),
+    val period: Period = Period(start = "", end = ""),
+    val meta: MetaData = MetaData(lastUpdated = ""),
+    val code: Code = Code(coding = listOf()),
+    val appointment: ReferenceItem = ReferenceItem(reference = "")
 )
 
 fun Resource.patientDto(): PatientDto = PatientDto(id, active, name, contact, gender, birthDate, address)
